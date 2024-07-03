@@ -1,0 +1,58 @@
+            Task3 --- dockerimage
+
+create one server
+1. install git
+2. install java
+3. install jenkins
+4. install ansible but dont give configuration(only master node)
+
+
+Go To jenkins
+manage jenkins
+1.tools
+2. plugins --> publish over ssh
+3. system --> give password n user name as dockeradmin n proxy passwd as 1234
+
+
+create new item 
+project name webapp
+freestyle project
+
+build steps --> maven
+git repository url
+
+Send files or execute commands over SSH
+docker
+**/*.war
+target
+/
+docker stop webapp;
+docker rm -f webapp;
+docker rmi -f devops;
+docker build -t devops .
+Send files or execute commands over SSH
+docker run -it -d --name webapp -p 8090:8080 devops
+
+mobaxterm
+    service docker start
+    service docker status
+    adduser dockeradmin
+    passwd dockeradmin
+    usermod -aG docker dockeradmin
+    visudo
+    vi /etc/ssh/sshd_config
+    service sshd restart
+    git --version
+    su - dockeradmin
+
+In dockeradmin
+vi Dockerfile
+From tomcat:9-jre9
+MAINTAINER "lohithksgowda1@gmail.com"
+COPY ./react.war /usr/local/tomcat/webapps/
+
+
+after this 
+war file should be in dockeradmin user
+
+
